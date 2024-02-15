@@ -21,6 +21,7 @@ import (
 	//     "errors"
 	// 	"github.com/bwmarrin/discordgo"
 	"github.com/bwmarrin/discordgo"
+	"github.com/joho/godotenv"
 )
 
 type YourStruct struct {
@@ -73,6 +74,8 @@ func init() {
 	if err != nil {
 		log.Fatalf("Invalid bot parameters: %v", err)
 	}
+
+	
 }
 
 var (
@@ -102,17 +105,22 @@ var (
 		// 	DMPermission:             &dmPermission,
 		// },
 
+		
 	
 
 	commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
 		"findme": func(s *discordgo.Session, i *discordgo.InteractionCreate) {
 
+			godotenv.Load()
+			// Get the API key from the environment
+			authtoken := os.Getenv("API_KEY")
+			
           
-         // Get the IP from the command options
+            // Get the IP from the command options
             ip := i.ApplicationCommandData().Options[0].Value.(string)
 
         
-			apilink := ""
+			apilink := "https://ipgeolocation.abstractapi.com/v1/?api_key="+authtoken+"&ip_address="
             // Put the IP in the URL
             url := fmt.Sprintf(apilink+"%s", ip)
             
