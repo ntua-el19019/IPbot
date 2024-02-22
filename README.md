@@ -2,7 +2,7 @@
 
 ### Usage:
 
-#### Run the bot locally or in hosted environment:
+#### Run the bot locally or in a hosted environment:
 ``` go run bot.go --token <your_bot_token> --guild <server_guild> ```
 
 #### In Discord server
